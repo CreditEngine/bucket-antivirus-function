@@ -42,9 +42,21 @@ RE_SEARCH_DIR = r"SEARCH_DIR\(\"=([A-z0-9\/\-_]*)\"\)"
 
 
 def current_library_search_path():
-    ld_verbose = subprocess.check_output(["ld", "--verbose"]).decode("utf-8")
-    rd_ld = re.compile(RE_SEARCH_DIR)
-    return rd_ld.findall(ld_verbose)
+    paths = []
+    with open('/etc/ld.so.conf', 'r') as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and os.path.exists(line):
+                paths.append(line)
+    for dirpath, dirnames, filenames in os.walk('/etc/ld.so.conf.d/'):
+        for filename in filenames:
+            with open(os.path.join(dirpath, filename), 'r') as f:
+                for line in f:
+                    line = line.strip()
+                    if line and not line.startswith("#") and os.path.exists(line):
+                        paths.append(line)
+    print(paths) # TODO: TESTのため後ほど削除する予定
+    return paths
 
 
 def update_defs_from_s3(s3_client, bucket, prefix):
