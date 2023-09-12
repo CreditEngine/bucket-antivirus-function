@@ -1,7 +1,5 @@
 # bucket-antivirus-function
 
-[![CircleCI](https://circleci.com/gh/upsidetravel/bucket-antivirus-function.svg?style=svg)](https://circleci.com/gh/upsidetravel/bucket-antivirus-function)
-
 Scan new objects added to any s3 bucket using AWS Lambda. [more details in this post](https://engineering.upside.com/s3-antivirus-scanning-with-lambda-and-clamav-7d33f9c5092e)
 
 ## Features
@@ -173,30 +171,6 @@ scan_bucket.py --lambda-function-name=<lambda_function_name> --s3-bucket-name=<s
 This tool will scan all objects that have not been previously scanned in the bucket and invoke the lambda function
 asynchronously. As such you'll have to go to your cloudwatch logs to see the scan results or failures. Additionally,
 the script uses the same environment variables you'd use in your lambda so you can configure them similarly.
-
-## Testing
-
-There are two types of tests in this repository. The first is pre-commit tests and the second are python tests. All of
-these tests are run by CircleCI.
-
-### pre-commit Tests
-
-The pre-commit tests ensure that code submitted to this repository meet the standards of the repository. To get started
-with these tests run `make pre_commit_install`. This will install the pre-commit tool and then install it in this
-repository. Then the github pre-commit hook will run these tests before you commit your code.
-
-To run the tests manually run `make pre_commit_tests` or `pre-commit run -a`.
-
-### Python Tests
-
-The python tests in this repository use `unittest` and are run via the `nose` utility. To run them you will need
-to install the developer resources and then run the tests:
-
-```sh
-pip install -r requirements.txt
-pip install -r requirements-dev.txt
-make test
-```
 
 ### Local lambdas
 

@@ -15,7 +15,6 @@
 AMZ_LINUX_VERSION:=2
 current_dir := $(shell pwd)
 container_dir := /opt/app
-circleci := ${CIRCLECI}
 
 .PHONY: help
 help:  ## Print the help documentation
