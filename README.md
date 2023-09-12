@@ -164,7 +164,7 @@ You may want to scan all the objects in a bucket that have not previously been s
 prior to setting up your lambda functions. To do this you can use the `scan_bucket.py` utility.
 
 ```sh
-pip install boto3
+pip3 install boto3
 scan_bucket.py --lambda-function-name=<lambda_function_name> --s3-bucket-name=<s3-bucket-to-scan>
 ```
 
