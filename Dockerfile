@@ -34,7 +34,7 @@ RUN rpm2cpio *.rpm | cpio -idmv
 RUN rpm2cpio libtasn1* | cpio -idmv
 RUN rpm2cpio libtool-ltdl* | cpio -idmv
 RUN rpm2cpio libxml2* | cpio -idmv
-RUN rpm2cpio libcurl | cpio -idmv
+RUN rpm2cpio libcurl* | cpio -idmv
 
 # Copy over the binaries and libraries
 RUN cp /tmp/usr/bin/clamscan /tmp/usr/bin/freshclam /tmp/usr/lib64/* /opt/app/bin/
