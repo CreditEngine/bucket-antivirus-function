@@ -32,9 +32,6 @@ RUN rpm2cpio nettle* | cpio -idmv
 RUN rpm2cpio lib* | cpio -idmv
 RUN rpm2cpio *.rpm | cpio -idmv
 RUN rpm2cpio libtasn1* | cpio -idmv
-RUN rpm2cpio libtool-ltdl* | cpio -idmv
-RUN rpm2cpio libxml2* | cpio -idmv
-RUN rpm2cpio libcurl* | cpio -idmv
 
 # Copy over the binaries and libraries
 RUN cp /tmp/usr/bin/clamscan /tmp/usr/bin/freshclam /tmp/usr/lib64/* /opt/app/bin/
@@ -47,7 +44,7 @@ RUN echo "CompressLocalDatabase yes" >> /opt/app/bin/freshclam.conf
 WORKDIR /opt/app
 RUN zip -r9 --exclude="*test*" /opt/app/build/lambda.zip *.py bin
 
-WORKDIR /usr/local/lib/python3.7/site-packages
+WORKDIR /usr/local/lib/python3.11/site-packages
 RUN zip -r9 /opt/app/build/lambda.zip *
 
 WORKDIR /opt/app
